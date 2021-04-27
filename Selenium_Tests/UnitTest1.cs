@@ -20,7 +20,7 @@ namespace Selenium_Tests
         {
             //Googling the schedule website
             var search_text = driver.FindElement(By.Name("q"));
-            search_text.SendKeys("Розклад КПІ");
+            search_text.SendKeys("Розклад КПІ"); //KPI schedule
             search_text.SendKeys(Keys.Enter);
 
             //Getting the first link of the result
@@ -33,7 +33,7 @@ namespace Selenium_Tests
 
             //Getting the first subject on wednesday from schedule table
             var found_text = driver.FindElements(By.TagName("tr"))[1].FindElements(By.TagName("td"))[3].FindElement(By.TagName("a")).Text;
-            string desired_subject = "Компоненти програмної інженерії 2. Якість та тестування програмного забезпечення";
+            string desired_subject = "Компоненти програмної інженерії 2. Якість та тестування програмного забезпечення"; //Computer Engineering 2. Software Quality and Testing
 
             //Comparing found subject with desired. Test will pass only if they're equal
             Assert.AreEqual(desired_subject, found_text);
@@ -43,21 +43,21 @@ namespace Selenium_Tests
         {
             //Googling Epicenter website
             var search_text = driver.FindElement(By.Name("q"));
-            search_text.SendKeys("Епіцентр");
+            search_text.SendKeys("Епіцентр"); //Epicenter
             search_text.SendKeys(Keys.Enter);
 
             //Getting the first link of the result
             driver.FindElement(By.ClassName("yuRUbf")).Click();
 
             //Moving to Contacts section
-            driver.FindElement(By.CssSelector("a[title=\"Контакти\"]")).SendKeys(Keys.Enter);
+            driver.FindElement(By.CssSelector("a[title=\"Контакти\"]")).SendKeys(Keys.Enter); //title="Contacts"
 
             //Getting call center working hours info
             string found_text = driver.FindElement(By.ClassName("company__content")).FindElement(By.TagName("h3")).Text;
-            string working_hours = "з 07:30 до 22:30";
+            string working_hours = "з 07:30 до 22:30"; //from 07:30 to 22:30
 
             //Checking that call center works at specified hours. Test will pass only if specified hours occur in found string
-            Assert.That(found_text.Contains(working_hours), $"Контакт-центр Епіцентру не працює {working_hours}");
+            Assert.That(found_text.Contains(working_hours), $"Epicenter's call center does not work {working_hours}");
         }
         [Test]
         public void Test3()
@@ -80,7 +80,7 @@ namespace Selenium_Tests
             int expected_views = 1_000_000_000;
 
             //Checking whether video has specified amount of views. Test will pass only if video has more views than expected
-            Assert.That(actual_views>=expected_views, $"Вказане відео ({video_title}) ще не набрало {expected_views} переглядів");
+            Assert.That(actual_views>=expected_views, $"Specified video ({video_title}) hasn't reached {expected_views} views yet");
         }
         [TearDown]
         public void Teardown()
